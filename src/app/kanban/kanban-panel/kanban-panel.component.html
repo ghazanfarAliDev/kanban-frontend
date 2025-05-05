@@ -1,29 +1,90 @@
-<div class="container py-4">
-    <div class="row">
-      <!-- To Do Column -->
-      <div class="col-12 col-md-4 mb-4">
-        <div class="p-3 bg-light rounded shadow-sm">
-          <h4>To Do</h4>
-          <mat-card class="mb-2">Task 1</mat-card>
-          <mat-card class="mb-2">Task 2</mat-card>
+<div class="kanban-layout">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav mode="side" opened class="sidenav">
+      <div class="logo">
+        <mat-icon>view_kanban</mat-icon>
+        <span>kanban</span>
+      </div>
+
+      <div class="boards">
+        <p class="boards-title">ALL BOARDS (3)</p>
+        <button mat-button class="board active">
+          <mat-icon>dashboard</mat-icon>
+          Platform Launch
+        </button>
+        <button mat-button class="board">
+          <mat-icon>campaign</mat-icon>
+          Marketing Plan
+        </button>
+        <button mat-button class="board">
+          <mat-icon>map</mat-icon>
+          Roadmap
+        </button>
+        <button mat-button class="board new-board">
+          <mat-icon>add</mat-icon>
+          + Create New Board
+        </button>
+      </div>
+
+      <div class="theme-toggle">
+        <mat-icon>light_mode</mat-icon>
+        <mat-slide-toggle></mat-slide-toggle>
+        <mat-icon>dark_mode</mat-icon>
+      </div>
+    </mat-sidenav>
+
+    <!-- Main Content -->
+    <mat-sidenav-content>
+      <div class="main-header mat-elevation-z2">
+        <h2>Platform Launch</h2>
+        <button mat-raised-button color="primary" class="add-task-btn">
+          + Add New Task
+        </button>
+      </div>
+
+      <div class="kanban-columns">
+        <!-- To Do Column -->
+        <div class="kanban-column">
+          <div class="column-header">
+            <span class="dot todo-dot"></span>
+            <h4>TODO</h4>
+          </div>
+          <mat-card class="task-card" *ngFor="let task of todoTasks">
+            <mat-card-title>{{ task.title }}</mat-card-title>
+            <mat-card-subtitle>
+              {{ task.subtasksCompleted }} of {{ task.totalSubtasks }} subtasks
+            </mat-card-subtitle>
+          </mat-card>
+        </div>
+
+        <!-- Doing Column -->
+        <div class="kanban-column">
+          <div class="column-header">
+            <span class="dot doing-dot"></span>
+            <h4>DOING</h4>
+          </div>
+          <mat-card class="task-card" *ngFor="let task of doingTasks">
+            <mat-card-title>{{ task.title }}</mat-card-title>
+            <mat-card-subtitle>
+              {{ task.subtasksCompleted }} of {{ task.totalSubtasks }} subtasks
+            </mat-card-subtitle>
+          </mat-card>
+        </div>
+
+        <!-- Done Column -->
+        <div class="kanban-column">
+          <div class="column-header">
+            <span class="dot done-dot"></span>
+            <h4>DONE</h4>
+          </div>
+          <mat-card class="task-card" *ngFor="let task of doneTasks">
+            <mat-card-title>{{ task.title }}</mat-card-title>
+            <mat-card-subtitle>
+              {{ task.subtasksCompleted }} of {{ task.totalSubtasks }} subtasks
+            </mat-card-subtitle>
+          </mat-card>
         </div>
       </div>
-  
-      <!-- In Progress Column -->
-      <div class="col-12 col-md-4 mb-4">
-        <div class="p-3 bg-light rounded shadow-sm">
-          <h4>In Progress</h4>
-          <mat-card class="mb-2">Task 3</mat-card>
-        </div>
-      </div>
-  
-      <!-- Done Column -->
-      <div class="col-12 col-md-4 mb-4">
-        <div class="p-3 bg-light rounded shadow-sm">
-          <h4>Done</h4>
-          <mat-card class="mb-2">Task 4</mat-card>
-        </div>
-      </div>
-    </div>
-  </div>
-  
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
