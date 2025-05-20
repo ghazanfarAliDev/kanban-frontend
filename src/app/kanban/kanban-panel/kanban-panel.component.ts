@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AddTaskComponent } from '../add-task/add-task.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-kanban-panel',
@@ -6,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './kanban-panel.component.scss'
 })
 export class KanbanPanelComponent {
+
+  private dialog = inject(MatDialog);
 
   todoTasks = [
     { title: 'Design settings and search pages', subtasksCompleted: 2, totalSubtasks: 3 },
@@ -24,6 +28,13 @@ export class KanbanPanelComponent {
     { title: 'Create wireframe prototype', subtasksCompleted: 1, totalSubtasks: 1 },
     { title: 'Review results of usability tests and iterate', subtasksCompleted: 3, totalSubtasks: 3 }
   ];
+
+
+  openAddTaskDialog(): void {
+    this.dialog.open(AddTaskComponent, {
+      width: '400px',
+    });
+  }
   
 
 }

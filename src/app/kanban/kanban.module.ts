@@ -8,6 +8,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+
+import { AddTaskComponent } from './add-task/add-task.component';
 
 const routes: Routes = [
   {
@@ -18,16 +24,22 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    KanbanPanelComponent
+    KanbanPanelComponent,
+    AddTaskComponent
   ],
   imports: [
     CommonModule,
     MatCardModule,
+    MatInputModule,
+    FormsModule,
     MatButtonModule,
     MatSidenavModule,
+    ReactiveFormsModule,
     MatIconModule,
     MatSlideToggleModule,
     MatToolbarModule,
+    MatDialogModule,
+    MatFormFieldModule,
     RouterModule.forChild(routes),
   ]
 })
