@@ -1,14 +1,30 @@
-<!-- add-task-dialog.component.html -->
 <h2 mat-dialog-title>Add New Task</h2>
 
 <mat-dialog-content>
+
+  <!-- Task Title -->
   <mat-form-field appearance="fill" class="full-width">
     <mat-label>Task Title</mat-label>
-    <input matInput placeholder="Enter task name" [(ngModel)]="taskTitle">
+    <input matInput placeholder="Enter task name" [(ngModel)]="taskTitle" />
   </mat-form-field>
+
+  <!-- Task Status -->
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Status</mat-label>
+    <mat-select [(ngModel)]="taskStatus">
+      <mat-option value="todo">To Do</mat-option>
+      <mat-option value="doing">Doing</mat-option>
+      <mat-option value="done">Done</mat-option>
+    </mat-select>
+  </mat-form-field>
+
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary" [mat-dialog-close]="taskTitle">Add</button>
+  <button mat-raised-button color="primary"
+          [disabled]="!taskTitle.trim() || !taskStatus"
+          [mat-dialog-close]="{ title: taskTitle, status: taskStatus }">
+    Add
+  </button>
 </mat-dialog-actions>

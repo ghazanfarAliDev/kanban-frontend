@@ -8,10 +8,11 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class AddTaskComponent {
   private dialogRef = inject(MatDialogRef<AddTaskComponent>);
+
   taskTitle: string = '';
+  taskStatus: 'todo' | 'doing' | 'done' | null = null;
 
   close(): void {
     this.dialogRef.close();
   }
-
 }

@@ -31,10 +31,33 @@ export class KanbanPanelComponent {
 
 
   openAddTaskDialog(): void {
-    this.dialog.open(AddTaskComponent, {
-      width: '400px',
-    });
-  }
+  const dialogRef = this.dialog.open(AddTaskComponent, {
+    width: '400px',
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result?.title?.trim() && result.status) {
+      const newTask = {
+        title: result.title,
+        subtasksCompleted: 0,
+        totalSubtasks: 0
+      };
+
+      switch (result.status) {
+        case 'todo':
+          this.todoTasks.push(newTask);
+          break;
+        case 'doing':
+          this.doingTasks.push(newTask);
+          break;
+        case 'done':
+          this.doneTasks.push(newTask);
+          break;
+      }
+    }
+  });
+}
+
   
 
 }
